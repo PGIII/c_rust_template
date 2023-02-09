@@ -9,11 +9,25 @@
 		{
 			"name": "default",
 			"displayName": "Default Config",
-			"description": "Configure preset using Makefile generator",
-			"generator": "Unix Makefiles",
+			"description": "Configure preset using Ninja generator",
+			"generator": "Ninja",
 			"binaryDir": "${sourceDir}/build/default/release",
 			"cacheVariables": {
 				"CMAKE_BUILD_TYPE": "Release",
+				"CMAKE_EXPORT_COMPILE_COMMANDS": {
+					"type": "BOOL",
+					"value": "ON"
+				}
+			}
+		},
+		{
+			"name": "debug",
+			"displayName": "Debug Config",
+			"description": "Configure preset using Ninja generator",
+			"generator": "Ninja",
+			"binaryDir": "${sourceDir}/build/default/debug",
+			"cacheVariables": {
+				"CMAKE_BUILD_TYPE": "Debug",
 				"CMAKE_EXPORT_COMPILE_COMMANDS": {
 					"type": "BOOL",
 					"value": "ON"
@@ -24,8 +38,11 @@
 	"buildPresets": [
 		{
 			"name": "default",
-			"configurePreset": "default",
-			"jobs": 4
+			"configurePreset": "default"
+		},
+		{
+			"name": "debug",
+			"configurePreset": "debug"
 		}
 	]
 }

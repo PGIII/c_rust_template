@@ -7,26 +7,12 @@ if(NOT CMAKE_BUILD_TYPE)
 	set(CMAKE_BUILD_TYPE Release)
 endif()
 
-#Define Rust as external project 
-set_directory_properties(PROPERTIES EP_PREFIX ${CMAKE_BINARY_DIR}/rust)
-ExternalProject_Add(
-    rust_hello_world
-    DOWNLOAD_COMMAND ""
-    CONFIGURE_COMMAND ""
-    BUILD_COMMAND cargo build COMMAND cargo build --release
-    BINARY_DIR ${CMAKE_SOURCE_DIR}/lib/rust_hello_world
-	BUILD_ALWAYS ON
-	BUILD_BYPRODUCTS   ${CMAKE_SOURCE_DIR}/lib/rust_hello_world/target/release/librust_hello_world.a ${CMAKE_SOURCE_DIR}/lib/rust_hello_world/target/debug/librust_hello_world.a
-    INSTALL_COMMAND ""
-    LOG_BUILD ON
-)
-
 add_executable(rusty_c)
 target_sources(rusty_c 
 	PUBLIC src/main.c
 )
-add_dependencies(rusty_c rust_hello_world)
 target_link_libraries(rusty_c
-    debug "${CMAKE_SOURCE_DIR}/lib/rust_hello_world/target/debug/librust_hello_world.a"
-    optimized "${CMAKE_SOURCE_DIR}/lib/rust_hello_world/target/release/librust_hello_world.a"
+	rust_hello_world
 )
+
+add_subdirectory(lib/rust_hello_world)

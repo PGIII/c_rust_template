@@ -1,6 +1,6 @@
 #include <stdio.h>
+#include "rust_hello_world_api.h"
 
-extern void hello_from_rust(void);
 
 int main(int argc, char *argv[])
 {

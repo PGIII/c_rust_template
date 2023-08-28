@@ -1,3 +1,4 @@
+[Blog Post](https://www.pg3.dev/post?id=4)
 # Requires
 
 * CMake
@@ -27,3 +28,4 @@ Building of both the rust module and the main C program are done through CMake w
 ### Debug
 
 `cmake --build --preset debug`
+
